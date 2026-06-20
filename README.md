@@ -1,11 +1,11 @@
 # Heart Disease Risk Prediction using Machine Learning
 # Project Overview
 
-This project aims to predict the likelihood of heart disease using machine learning techniques. The study applies classification algorithms to the Cleveland Heart Disease dataset to evaluate model performance and identify important clinical predictors. The project compares Logistic Regression, Random Forest, and XGBoost models.
+This project aims to predict the likelihood of heart disease using machine learning techniques. The study applies classification algorithms to the Cleveland Heart Disease dataset to evaluate model performance and identify important clinical predictors. The project compares Logistic Regression, Random Forest, and XGBoost models, with a particular focus on model explainability using SHAP.
 
 # Dataset
 
-The dataset used in this project is the Cleveland Heart Disease dataset obtained from the UCI Machine Learning Repository. The dataset contains 303 patient records with 14 clinically relevant features, including age, cholesterol level, chest pain type, and maximum heart rate.
+The dataset used in this project is the Cleveland Heart Disease dataset, obtained from the UCI Machine Learning Repository. It contains 303 patient records with 13 clinical features plus the target variable, including age, sex, chest pain type (cp), resting blood pressure (trestbps), cholesterol level (chol), fasting blood sugar (fbs), resting ECG results (restecg), maximum heart rate achieved (thalach), exercise-induced angina (exang), ST depression (oldpeak), slope of the ST segment, number of major vessels (ca), and thalassemia status (thal).
 
 # Technologies Used
 Python
@@ -24,10 +24,14 @@ Scikit-learn
 
 XGBoost
 
-# Project Structure
-heartdisease_risk_prediction_project.ipynb – Main notebook containing analysis and model implementation
+SHAP (SHapely Additive exPlanations)
 
-Heart_Disease_Report.docx – Final project report
+Imbalanced-learn (SMOTE)
+
+# Project Structure
+heartdisease_final_code_for_review.ipynb – Main notebook containing analysis and model implementation
+
+DS_project_FPR_Renu_updated_latest_to_review.docx – Final project report
 
 README.md – Project documentation
 # Methodology
@@ -51,6 +55,10 @@ README.md – Project documentation
 	
 	b.Train-test split
 
+	c.SMOTE for class imbalance handling
+
+	d. Feature Scaling
+
 4.Model implementation
 	
 	a.Logistic Regression
@@ -59,24 +67,22 @@ README.md – Project documentation
 	
 	c.XGBoost
 
-5.Hyperparameter tuning using GridSearchCV
+5.Hyperparameter tuning using GridSearchCV (5-fold cross-validation, optimised for ROC-AUC)
 
-6.Model evaluation using accuracy, precision, recall, F1-score, and confusion matrix
+6.Model evaluation using accuracy, precision, recall, F1-score, ROC-AUC, and confusion matrices
 # Results
 
-The models were evaluated and compared based on performance metrics. Ensemble methods such as Random Forest and XGBoost achieved higher accuracy compared to Logistic Regression, demonstrating improved predictive performance for heart disease classification.
+The models were evaluated and compared across a three-stage framework (no SMOTE, SMOTE before tuning, and SMOTE with tuning) to assess the impact of class balancing and hyperparameter optimisation. XGBoost achieved the most consistent overall performance across accuracy, precision, recall, and F1-score, while Random Forest achieved the highest ROC-AUC. Logistic Regression remained a competitive, highly interpretable baseline.
 
 # Model Explainability (SHAP)
 
-To improve interpretability of the machine learning models, SHAP (SHapley Additive exPlanations) was used. SHAP helps explain individual predictions by showing the contribution of each feature to the model output.
+To improve interpretability of the machine learning models, SHAP (SHapley Additive exPlanations) was applied to all three tuned models — Logistic Regression, Random Forest, and XGBoost. SHAP was used to:
 
-In this project, SHAP was applied primarily to tree-based models such as Random Forest and XGBoost to:
+Identify the most influential features affecting predictions (e.g., thal, ca, chest pain type, oldpeak, and maximum heart rate)
+Understand how each feature increases or decreases the predicted risk
+Provide both global feature importance rankings and local, per-patient explanations
 
-Identify the most influential features affecting predictions (e.g., chest pain type, age, cholesterol level)
-Understand how each feature increases or decreases the risk prediction
-Provide global feature importance as well as local explanations for individual patient predictions
-
-This improves transparency and makes the model more suitable for healthcare applications where interpretability is critical.
+This improves transparency and makes the models more suitable for healthcare applications where interpretability is critical.
 
 # How to Run the Project
 Clone the repository
@@ -91,7 +97,7 @@ Run all cells to reproduce results
 
 Install dependencies using:
 
-### pip install pandas numpy matplotlib seaborn scikit-learn xgboost
+### pip install pandas numpy matplotlib seaborn scikit-learn xgboost shap imbalanced-learn
 # Author
 
 Renusree Kakarla
