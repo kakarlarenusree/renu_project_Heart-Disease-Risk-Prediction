@@ -78,9 +78,11 @@ The models were evaluated and compared across a three-stage framework (no SMOTE,
 
 To improve interpretability of the machine learning models, SHAP (SHapley Additive exPlanations) was applied to all three tuned models — Logistic Regression, Random Forest, and XGBoost. SHAP was used to:
 
-Identify the most influential features affecting predictions (e.g., thal, ca, chest pain type, oldpeak, and maximum heart rate)
-Understand how each feature increases or decreases the predicted risk
-Provide both global feature importance rankings and local, per-patient explanations
+Identify the most influential features affecting predictions (e.g., thal, ca, chest pain type, oldpeak, and maximum heart rate).
+
+Understand how each feature increases or decreases the predicted risk.
+
+Provide both global feature importance rankings and local, per-patient explanations.
 
 This improves transparency and makes the models more suitable for healthcare applications where interpretability is critical.
 
